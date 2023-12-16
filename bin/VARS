@@ -1,0 +1,28 @@
+# VARS
+dshieldDirectory=/data/dshieldManager
+
+logDir=$dshieldDirectory/logs
+
+packetDir=$dshieldDirectory/packets
+packetArchive=$dshieldDirectory/archive/packets
+dbDir=$dshieldDirectory/db
+sqlDir=$dshieldDirectory/db/sql
+
+datestamp=$(date +"%Y-%m-%d")
+
+dshieldSSH=$dshieldDirectory/bin/ssh
+sshKey=$dshieldDirectory/bin/ssh/dshield-key.pem
+user=dshield
+sshPort=12222
+
+domain=nullusspecialis.com
+imageViewer=/usr/bin/gpicview
+
+onionServer=dshield-so-import.1on1security.lan
+onionUser=nefario
+
+probes=(africa australia eastasia eastus europe india israel korea southamerica southeastasia westus)
+#probes=(africa africa2 australia australia2 eastasia eastasia2 eastus eastus2 europe europe2 india india2 israel israel2 korea korea2 southamerica southamerica2 southeastasia southeastasia2 westus westus3)
+# This empty date assignment is needed for userDateSelection in FUNCTIONS
+date=
+export DATEMSK=/dshieldManager/packets/time_formats

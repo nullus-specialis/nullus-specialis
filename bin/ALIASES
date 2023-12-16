@@ -1,0 +1,7 @@
+# Directory Aliases
+alias dshield="cd $dshieldDirectory"
+alias packets="cd $dshieldDirectory/packets"
+alias archive="cd $dshieldDirectory/archive"
+alias dshieldmanager="$dshieldDirectory/bin/cursedDshieldManager.bash"
+
+export PATH="/data/dshieldManager/bin/:/data/dshieldManager/bin/ssh/:$PATH"

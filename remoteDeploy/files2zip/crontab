@@ -1,0 +1,13 @@
+# crontab entries for myDshieldManager.bash suite
+# Added to default root crontab on Dshield sensors.
+
+# Hourly execution of  traffic capture
+0 * * * * /root/rootScripts/packetCapture.bash &2>/dev/null
+@reboot sleep 15 /root/rootScripts/packetCapture.bash &2>/dev/null
+
+# 6am gather traffic logs.
+00 06 * * * /root/rootScripts/packagePackets.bash &2>/dev/null
+
+# midnight gather dshield logs
+0 0 * * * cp /srv/cowrie/var/log/cowrie/cowrie.json.* /logs/
+0 0 * * * cp /srv/db/webhoneypot-*.json /logs/

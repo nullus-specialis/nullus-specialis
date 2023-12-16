@@ -1,0 +1,53 @@
+# individualized data unique to my own honeypots that winds up in a few locations such as logs/db etc.
+*.csv
+*.db
+*.db3
+*.json
+*.pcap
+*.pem
+*.tar.gz
+*.bak
+*localDshield.log
+dshield-key.pem
+*.db3-journal
+
+# Test data that's also unique/private
+foo.*
+zeekTest.bash
+
+# My logs/packets/TTY/downloads files are unique and not included.  Leaving the trailing / to create empty directories in project.
+logs/africa*
+logs/australia*
+logs/eastasia*
+logs/eastus*
+logs/europe*
+logs/india*
+logs/israel*
+logs/korea*
+logs/southamerica*
+logs/southeastasia*
+logs/westus*
+packets/*
+TTY/*
+downloads/*
+
+# The big archives/logs are also unique data.  Leaving the trailing / to create empty directories in project.
+archive/logs/*
+archive/packets/*
+
+# I've used tmp briefly to write graph.png files, but moved on to system /tmp
+tmp/*
+
+# My investigation scratch directory, also private snatches of data.  Leaving the trailing / for empty dirs.
+investigation/logs*
+investigation/cowrie*
+investigation/TTY*
+investigation/downloads*
+investigation/zeek*
+
+# More personally unique information used to add allow admin entries to iptables on honeypots.
+starlinkDenverIPs
+networkSecurityGroupAddIP.bash
+
+# My excel spreadsheet for tracking honeypot host information.
+hostData.xlsx
