@@ -21,6 +21,8 @@ main_menu() {
     t "Manage TTY Logs" \
     d "Manage Downloads" \
     F "Perform Get/Fetch Functions" \
+    R "Remote Command" \
+    S "Status of DShield Honeypots" \
     x "Exit" 2> /tmp/dshieldManager_choice
 
   choice=$(cat /tmp/dshieldManager_choice)
@@ -31,6 +33,8 @@ main_menu() {
     t) manage_tty_logs ;;
     d) manage_downloads ;;
     F) fetch_functions ;;
+    R) executeRemoteCommand ;;
+    S) fetchStatus;;
     x) exit 0 ;;
   esac
 }
@@ -66,7 +70,7 @@ manage_daily_honeypot_logs() {
   case $choice in
     f) fetchHoneypot ;;
     i) webhoneypot2sqlite3 ;;
-    v) sqlitebrowser $dbDir/sql/webhoneypot.sqbpro  ;;
+    v) sqlitebrowser $dbDir/sql/webhoneypot.sqbpro &;;
     ip) sensorTopIP ;;
     url) sensorTopURL ;;
     x) manage_honeypot_logs 0 ;;
@@ -86,7 +90,7 @@ manage_all_honeypot_logs() {
   choice=$(cat /tmp/dshieldManager_choice)
   case $choice in
     I) everyHoneypot2sqlite3 ;;
-    v) sqlitebrowser $dbDir/sql/everywebhoneypot.sqbpro  ;;
+    v) sqlitebrowser $dbDir/sql/everywebhoneypot.sqbpro & ;;
     ip) sensorTopIPEvery ;;
     url) sensorTopURLEvery ;;
     x) manage_honeypot_logs 0 ;;
@@ -110,9 +114,9 @@ manage_firewall_logs () {
   case $choice in
     f) fetchDShieldFirewallLog ;;
     i) firewall2sqlite3 ;;
-    v) sqlitebrowser $dbDir/sql/firewall.sqbpro ;;
+    v) sqlitebrowser $dbDir/sql/firewall.sqbpro &;;
     a) everyfirewall2sqlite3 ;;
-    va) sqlitebrowser -r $dbDir/sql/everyfirewall.db3 ;;
+    va) sqlitebrowser -r $dbDir/sql/everyfirewall.db3 &;;
     b) main_menu ;;
   esac
 }

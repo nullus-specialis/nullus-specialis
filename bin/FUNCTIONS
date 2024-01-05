@@ -31,7 +31,6 @@ fi
 
 fetchHoneypot() {
     /usr/bin/clear
-    clear
     echo "--- Fetching DShield Honeypot Logs from Sensors --- " ${probes[@]}
 	for sensor in "${probes[@]}"
 	do
@@ -43,7 +42,6 @@ fetchHoneypot() {
         echo
 	done
     echo "DShield fetch is complete."
-    read -n 1 -s -r -p "Press any key to continue"
 }
 
 webhoneypot2sqlite3() {
@@ -176,7 +174,7 @@ fetchDShieldFirewallLog() {
         echo
 	done
     echo "DShield fetch is complete."
-    read -n 1 -s -r -p "Press any key to continue"
+
 }
 
 firewall2sqlite3() {
@@ -222,10 +220,10 @@ fetchTTY() {
         echo "Fetching cowrie.json.YYYY-MM-DD files..."
         /usr/bin/scp -P $sshPort -i $sshKey -p $user@$sensor.$domain:/logs/cowrie.json.* $dshieldDirectory/logs/$sensor/
         echo "Flushing cowrie.json.YYYY-MM-DD files..."
-        /usr/bin/ssh -i $sshKey $user@$sensor.$domain -p $sshPort 'sudo rm /logs/cowrie.json.*'
+        /usr/bin/ssh -i $sshKey $user@$sensor.$domain -p $sshPort 'sudo rm /logs/cowrie*'
 	done
     echo "DShield TTY Log fetch is complete."
-    read -n 1 -s -r -p "Press any key to continue"
+
 }
 
 viewTTY () {
@@ -249,7 +247,7 @@ fetchDownloads() {
         /usr/bin/ssh -i $sshKey $user@$sensor.$domain -p $sshPort "sudo rm /logs/$datestamp.downloads.zip"
 	done
     echo "DShield Download fetch is complete."
-    read -n 1 -s -r -p "Press any key to continue"
+
 }
 
 extractDownloads () {
@@ -284,8 +282,8 @@ fetchPackets() {
         /usr/bin/ssh -i $sshKey $user@$sensor.$domain -p $sshPort 'sudo rm -f /pcap/*'
         echo "Finished" $sensor
 	done
-    echo "DShield fetch is complete."
-    read -n 1 -s -r -p "Press any key to continue"
+    echo "Packet fetch is complete."
+  
 }
 
 extractPackets() {

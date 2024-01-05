@@ -30,6 +30,9 @@ logs/westus*
 packets/*
 TTY/*
 downloads/*
+testAgent/
+logAgents.config
+packetAgents.config
 
 # The big archives/logs are also unique data.  Leaving the trailing / to create empty directories in project.
 archive/logs/*

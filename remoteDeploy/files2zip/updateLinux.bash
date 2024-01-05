@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-
 sudo apt install git python3-pip nano tcpdump cron -y
 sudo apt update && sudo apt full-upgrade -y
 sudo mkdir /logs; sudo chown dshield /logs
@@ -11,4 +10,3 @@ sudo mv ~/packetCapture.bash packagePackets.bash /root/rootScripts/.
 sudo chmod +x /root/rootScripts/packetCapture.bash; sudo chmod +x /root/rootScripts/packagePackets.bash
 sudo crontab ~/crontab
 sudo cp localDshield /etc/logrotate.d/
-git clone https://github.com/DShield-ISC/dshield.git

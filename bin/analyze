@@ -17,7 +17,7 @@ EOF
 }
 
 
-PACKETPATH=/dshieldManager/packets
+PACKETPATH=/data/dshieldManager/packets
 sensors=$(ls $PACKETPATH)
 bold=$(tput setaf 2)
 normal=$(tput sgr0)

@@ -53,9 +53,9 @@ echo
 echo "Cool! Here we go."
 echo "Copying template to new .json file..."
 cp $templateFile $1.json
-# Replace testDeployment in template to $1.json name of Resource Group and Sensor
+# Replace testDeployment in $1.json with name of Resource Group and Sensor
 sed -i -e "s|testDeployment|$1|g" $1.json
-# Replace eastus in template with $2 matching Resource Group and Sensor
+# Replace eastus in $1.json with $2 matching Resource Group and Sensor
 sed -i -e "s|eastus|$2|g" $1.json
 # Replace the public key data in the template with our DShield key
 sed -i -e "s/"keyData"^/$(sed 's:/:\\/:g' dshield-key.pub)/" $1.json
@@ -108,8 +108,9 @@ echo -ne '\n'
 echo "Now updating Ubuntu and installing necessary packages..."
 /usr/bin/scp -o StrictHostKeyChecking=accept-new -i $sshKey files2upload.zip $user@$publicIPAddress:~/.
 /usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress 'sudo apt install unzip'
-/usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress 'unzip ~/files2upload.zip -d ~/'
+/usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress 'unzip -j ~/files2upload.zip'
 /usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress '~/updateLinux.bash'
+/usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress 'git clone https://github.com/DShield-ISC/dshield.git'
 
 mkdir $dshieldDirectory/logs/$1
 mkdir $dshieldDirectory/packets/$1
