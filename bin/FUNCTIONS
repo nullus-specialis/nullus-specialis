@@ -339,8 +339,6 @@ executeRemoteCommand() {
     echo
     /usr/bin/ssh -i $sshKey $user@$sensor.$domain -p $sshPort $remoteCommand
     echo
-    read -n 1 -s -r -p "Press any key to continue"
-    echo
     done
 }
 

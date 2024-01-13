@@ -14,6 +14,8 @@ dshield-key.pem
 # Test data that's also unique/private
 foo.*
 zeekTest.bash
+Data/*
+agents/*
 
 # My logs/packets/TTY/downloads files are unique and not included.  Leaving the trailing / to create empty directories in project.
 logs/africa*

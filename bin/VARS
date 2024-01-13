@@ -21,8 +21,7 @@ imageViewer=/usr/bin/gpicview
 onionServer=dshield-so-import.1on1security.lan
 onionUser=nefario
 
-probes=(africa australia eastasia eastus europe india israel korea southamerica southeastasia westus africa24 australia24 eastasia24 eastus24 europe24 india24 israel24 korea24 southamerica24 southeastasia24 westus24)
-#probes=(africa australia eastasia eastus europe india israel korea southamerica southeastasia westus)
+probes=(africa24 australia24 eastasia24 eastus24 europe24 india24 israel24 korea24 southamerica24 southeastasia24 westus24)
 
 
 # This empty date assignment is needed for userDateSelection in FUNCTIONS
