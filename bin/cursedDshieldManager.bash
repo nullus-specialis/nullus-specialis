@@ -69,7 +69,7 @@ manage_daily_honeypot_logs() {
   choice=$(cat /tmp/dshieldManager_choice)
   case $choice in
     f) fetchHoneypot ;;
-    i) webhoneypot2sqlite3 ;;
+    i) honeypot2SQL ;;
     v) sqlitebrowser $dbDir/sql/webhoneypot.sqbpro &;;
     ip) sensorTopIP ;;
     url) sensorTopURL ;;
@@ -89,7 +89,7 @@ manage_all_honeypot_logs() {
 
   choice=$(cat /tmp/dshieldManager_choice)
   case $choice in
-    I) everyHoneypot2sqlite3 ;;
+    I) allhoneypots2SQL ;;
     v) sqlitebrowser $dbDir/sql/everywebhoneypot.sqbpro & ;;
     ip) sensorTopIPEvery ;;
     url) sensorTopURLEvery ;;

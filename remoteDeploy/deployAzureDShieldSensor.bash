@@ -112,10 +112,10 @@ echo "Now updating Ubuntu and installing necessary packages..."
 /usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress '~/updateLinux.bash'
 /usr/bin/ssh -o StrictHostKeyChecking=accept-new -i $sshKey $user@$publicIPAddress 'git clone https://github.com/DShield-ISC/dshield.git'
 
-mkdir $dshieldDirectory/logs/$1
-mkdir $dshieldDirectory/packets/$1
-mkdir $dshieldDirectory/archive/logs/$1
-mkdir $dshieldDirectory/archive/packets/$1
+#mkdir $dshieldDirectory/logs/$1
+#mkdir $dshieldDirectory/packets/$1
+#mkdir $dshieldDirectory/archive/logs/$1
+#mkdir $dshieldDirectory/archive/packets/$1
 
 echo
 echo "Don't forget to update your dns or /etc/hosts record!"
