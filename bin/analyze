@@ -16,7 +16,6 @@ notice and license.
 EOF
 }
 
-
 PACKETPATH=/data/dshieldManager/packets
 sensors=$(ls $PACKETPATH)
 bold=$(tput setaf 2)
@@ -26,7 +25,6 @@ END="999999999999999"
 SOPT=0
 EOPT=0
 PARAMETERS=""
-
 
 function usage {
 COMMAND=$(basename "$0")
@@ -98,7 +96,7 @@ fi
 if [ ! -d $PACKETPATH/$SENSOR ] ; then
   echo $bold$SENSOR$normal is not a valid sensor.  Valid sensors are [ $bold$sensors $normal] >&2
   exit 2
-fi 
+fi
 
 REGEX='($PACKETPATH/$SENSOR/.*\.pcap\.)'
 #files=$(ls $PACKETPATH/$SENSOR/dailylogs/*/*)
