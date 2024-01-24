@@ -15,6 +15,7 @@ dshield-key.pem
 foo.*
 zeekTest.bash
 Data/*
+packets/*
 agents/*
 
 
