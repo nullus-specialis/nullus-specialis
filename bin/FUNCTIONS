@@ -205,3 +205,52 @@ extractDownloads () {
     echo "		extractDownloads not implemented yet"
     read -n 1 -s -r -p "Press any key to continue"
 }
+
+graphHoneypotLogs () {
+    for sensor in "${probes[@]}"
+	do
+		echo $sensor
+        $dshieldDirectory/bin/fileSizeDistribution.py $dshieldDirectory/Data/$sensor.$domain/logs/ ;
+        clear
+	done
+}
+
+graphPcapLogs () {
+    for sensor in "${probes[@]}"
+	do
+        echo $sensor
+		$dshieldDirectory/bin/fileSizeDistribution.py $dshieldDirectory/packets/$sensor.$domain ;
+        clear
+	done
+}
+
+graphPacketTarballs () {
+    for sensor in "${probes[@]}"
+	do
+    echo $sensor
+	$dshieldDirectory/bin/fileSizeDistribution.py /data/productionArchive/dshield/$sensor.$domain/packets/
+    clear
+    done
+}
+
+graphDownloads () {
+    for sensor in "${probes[@]}"
+	do
+        echo $sensor
+		$dshieldDirectory/bin/fileSizeDistribution.py $dshieldDirectory/Data/$sensor.$domain/downloads/ ;
+        clear
+    done
+}
+
+graphTTY () {
+    for sensor in "${probes[@]}"
+	do
+        echo $sensor
+		$dshieldDirectory/bin/fileSizeDistribution.py $dshieldDirectory/Data/$sensor.$domain/tty/ ;
+        clear
+	done
+}
+
+detectLargeFiles () {
+	$dshieldDirectory/bin/fileSizeDistributionSubs.py $dshieldDirectory/Data/ ;
+}

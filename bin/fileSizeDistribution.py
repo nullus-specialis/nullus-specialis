@@ -3,6 +3,7 @@
 # For a given path graph file size distribution.
 
 import os
+import sys
 import matplotlib.pyplot as plt
 from collections import defaultdict
 import subprocess
@@ -14,23 +15,40 @@ def get_file_sizes(directory):
         for file in files:
             file_path = os.path.join(root, file)
             size = os.path.getsize(file_path) / (1024 ** 2)  # Convert bytes to megabytes
-            file_sizes[root].append(size)
+            file_sizes[root].append((file_path, size))
+
+    # Sort file sizes within each directory by size in descending order
+    for directory, sizes in file_sizes.items():
+        file_sizes[directory] = sorted(sizes, key=lambda x: x[1], reverse=True)
 
     return file_sizes
 
 def plot_distribution(file_sizes):
     plt.figure(figsize=(15, 5))
 
-    for file in file_sizes:
-	    plt.hist(file_sizes[file], bins=15, alpha=0.8, label=file)
+    for directory, sizes in file_sizes.items():
+        largest_files = sizes[:5]  # Display information about the top 5 largest files
+        sizes = [size[1] for size in sizes]
 
-    plt.title('File Size Distribution for directory')
+        plt.hist(sizes, bins=15, alpha=0.8, label=directory)
+
+        # Calculate y-coordinate for annotation to stack them vertically with space
+        y_annotation = [20 * (i + 1) for i in range(len(largest_files))]  # Adjust the value (30) for desired space
+
+        # Annotate the largest files with their names and sizes
+        for i, (file_path, size) in enumerate(largest_files):
+            plt.annotate(f"{os.path.basename(file_path)}\n({size:.2f} MB)",
+                         xy=(size, 0), xycoords=('data', 'axes fraction'),
+                         xytext=(0, y_annotation[i]), textcoords='offset points',
+                         ha='center', va='bottom', color='red', fontsize=12, rotation=45)
+
+    plt.title('File Size Distribution with 5 Largest Files')
     plt.xlabel('File Size (MB)')
     plt.ylabel('Frequency')
     plt.legend(loc='upper right')
     plt.grid(True)
 
-    plt.savefig('/tmp/dshieldManager.fileSizeDistributionSubs.png')
+    plt.savefig('/tmp/dshieldManager.fileSizeDistribution.png')
     plt.show()
 
 def open_with_gpicview(image_path):
@@ -40,7 +58,11 @@ def open_with_gpicview(image_path):
         print("gpicview is not installed. Please install it or use another image viewer.")
 
 def main():
-    directory = input("Enter the directory path: ")
+    if len(sys.argv) != 2:
+        print("Usage: {} <directory>".format(sys.argv[0]))
+        sys.exit(1)
+
+    directory = sys.argv[1]
 
     if not os.path.isdir(directory):
         print("Invalid directory path. Please provide a valid directory.")
@@ -49,8 +71,8 @@ def main():
     file_sizes = get_file_sizes(directory)
     plot_distribution(file_sizes)
 
-    print("File size distribution graph saved as '/tmp/dshieldManager.fileSizeDistributionSubs.png'")
-    open_with_gpicview('/tmp/dshieldManager.fileSizeDistributionSubs.png')
+    print("File size distribution graph saved as '/tmp/dshieldManager.fileSizeDistribution.png'")
+    open_with_gpicview('/tmp/dshieldManager.fileSizeDistribution.png')
 
 if __name__ == "__main__":
     main()

@@ -20,7 +20,7 @@ main_menu() {
     P "Packets: to Security Onion" \
     R "Execute Remote Command on Sensors" \
     S "Status of DShield Sensors" \
-    s "Sub Menu" \
+    g "Graph File Sizes" \
     q "Exit" 2> /tmp/dshieldManager_choice
 
   choice=$(cat /tmp/dshieldManager_choice)
@@ -29,24 +29,32 @@ main_menu() {
     p) extractPackets ;;
     P) onionPackets ;;
     R) remoteCommand ;;
-    S) sensorStatus;;
-    s) submenu ;;
+    S) sensorStatus ;;
+    g) graphFileSizes ;;
     q) exit 0 ;;
   esac
 }
 
-submenu() {
+graphFileSizes() {
   dialog --clear --backtitle "Sub Menu" \
     --title "Sub Menu" \
     --menu "Choose an option:" 15 50 5 \
-    a "View TTY" \
-    b "Extract Downloads" \
+    d "Detect Large Files (>150MB)" \
+    h "View Hourly Honeypot Log Sizes BY SENSOR" \
+    p "View Hourly .pcap Sizes BY SENSOR" \
+    P "View Daily packet Tarball Sizes BY SENSOR" \
+    D "View Download File Sizes BY SENSOR" \
+    t "View TTY File Sizes BY SENSOR" \
     x "Back to Main Menu" 2> /tmp/dshieldManager_choice
 
   choice=$(cat /tmp/dshieldManager_choice)
   case $choice in
-    a) viewTTY ;;
-    b) extractDownloads ;;
+    d) detectLargeFiles ;;
+    h) graphHoneypotLogs ;;
+    p) graphPcapLogs ;;
+    P) graphPacketTarballs ;;
+    D) graphDownloads ;;
+    t) graphTTY ;;
     x) main_menu ;;
   esac
 }

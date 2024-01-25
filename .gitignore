@@ -8,16 +8,13 @@
 *.tar.gz
 *.bak
 *localDshield.log
-dshield-key.pem
 *.db3-journal
 
 # Test data that's also unique/private
-foo.*
-zeekTest.bash
 Data/*
 packets/*
 agents/*
-
+/bin/test/*
 
 # My local Data store, private.  
 Data/*
